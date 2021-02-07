@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1321
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hitboard", "hitboard\hitboard.csproj", "{890E9996-8919-4C65-B360-0A4B7E691B2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{890E9996-8919-4C65-B360-0A4B7E691B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{890E9996-8919-4C65-B360-0A4B7E691B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{890E9996-8919-4C65-B360-0A4B7E691B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{890E9996-8919-4C65-B360-0A4B7E691B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {898595B0-7E7E-4E5F-BEA8-DB3A1985E543}
+	EndGlobalSection
+EndGlobal
