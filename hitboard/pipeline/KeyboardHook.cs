@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Collections.Concurrent;
 
 namespace hitboard.pipeline
 {
@@ -19,11 +20,17 @@ namespace hitboard.pipeline
         // Function prototype for callback
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
+        // Reference to callback to ensure it will not be GCed
+        LowLevelKeyboardProc CallbackRef = HookCallback;
+
+        // Static reference to pipeline in use
+        static private BlockingCollection<Event> EventQueue;
+
 
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_KEYUP = 0x0101;
-        
+
         private static IntPtr hookID = IntPtr.Zero;
 
         // Declare syscalls to externally link
@@ -42,9 +49,14 @@ namespace hitboard.pipeline
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
 
+        public KeyboardHook(BlockingCollection<Event> eventQueue)
+        {
+            EventQueue = eventQueue;
+        }
+
         public void StartHook()
         {
-            hookID = SetHook(HookCallback);
+            hookID = SetHook(CallbackRef);
         }
 
         public void StopHook()
@@ -69,13 +81,11 @@ namespace hitboard.pipeline
         {
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             {
-                int vkCode = Marshal.ReadInt32(lParam);
-                Console.WriteLine("Down " + vkCode);
+                EventQueue.Add(new Event(Event.EventType.PRESS, Marshal.ReadInt32(lParam)));
             }
             else if (nCode >= 0 && wParam == (IntPtr)WM_KEYUP)
             {
-                int vkCode = Marshal.ReadInt32(lParam);
-                Console.WriteLine("UP " + vkCode);
+                EventQueue.Add(new Event(Event.EventType.RELEASE, Marshal.ReadInt32(lParam)));
             }
 
 
