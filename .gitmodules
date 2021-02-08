@@ -1,3 +1,6 @@
 [submodule "ViGEWrapper/ViGEmClient"]
 	path = ViGEWrapper/ViGEmClient
 	url = https://github.com/ViGEm/ViGEmClient
+[submodule "ViGEmWrapper/ViGEmClient/ViGEmClient"]
+	path = ViGEmWrapper/lib/ViGEmClient
+	url = https://github.com/ViGEm/ViGEmClient
