@@ -10,6 +10,7 @@ using System.Diagnostics;
 
 using hitboard.pipeline;
 
+
 namespace hitboard
 {
     /// <summary>
@@ -17,18 +18,24 @@ namespace hitboard
     /// </summary>
     public partial class App : Application
     {
-        // Central hooking interface
-        KeyboardHook hook = new KeyboardHook();
+        // Central pipeline
+        // This manages taking player input
+        // And converting it to a virtual controller
+        // output
+        PipelineManager pipeline; 
 
         public App()
         {
-            hook.StartHook();
-            Trace.WriteLine("teasdasdxt");
+
+            pipeline = new PipelineManager();
+            pipeline.SpinUpEventLoop();
+
+
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            hook.StopHook();
+            pipeline.Free();
         }
     }
 }

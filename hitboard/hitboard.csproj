@@ -69,8 +69,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pipeline\Event.cs" />
     <Compile Include="pipeline\KeyboardHook.cs" />
+    <Compile Include="pipeline\KeyConfiguration.cs" />
     <Compile Include="pipeline\KeyState.cs" />
+    <Compile Include="pipeline\PipelineManager.cs" />
+    <Compile Include="pipeline\VController.cs" />
+    <Compile Include="pipeline\XInputState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
