@@ -22,10 +22,43 @@ namespace hitboard
     /// </summary>
     public partial class Dashboard : Window
     {
+        bool IsPipelineActive = false;
+
         public Dashboard()
         {
             InitializeComponent();
 
+        }
+
+        private void StartButton_Press(object sender, RoutedEventArgs e)
+        {
+            if (IsPipelineActive)
+            {
+                StopPipeline();
+            }
+            else
+            {
+                StartPipeline();
+            }
+
+            IsPipelineActive = !IsPipelineActive;
+        }
+
+        // Start pipeline
+        public void StartPipeline()
+        {
+            StartButton.Content = "Stop";
+
+            App.Instance.StartPipeline();
+
+        }
+
+        // Stop pipeline
+        public void StopPipeline()
+        {
+            StartButton.Content = "Start";
+
+            App.Instance.StopPipeline();
         }
     }
 }

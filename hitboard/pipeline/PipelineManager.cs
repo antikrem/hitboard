@@ -11,7 +11,7 @@ namespace hitboard.pipeline
 {
     class PipelineManager
     {
-        private readonly KeyboardHook hook;
+        private KeyboardHook hook;
         private VController vController;
 
         // Keystate
@@ -24,6 +24,9 @@ namespace hitboard.pipeline
         private readonly BlockingCollection<Event> EventQueue  
                 = new BlockingCollection<Event>(new ConcurrentQueue<Event>());
 
+        // Handle thread
+        private Thread PipelineHandler = null;
+
         // Initialise all required components for pipeline
         public PipelineManager()
         {
@@ -33,7 +36,6 @@ namespace hitboard.pipeline
 
             // Create hook
             hook = new KeyboardHook(EventQueue);
-
         }
 
         // Checks if Event is a stop sequence
@@ -42,6 +44,14 @@ namespace hitboard.pipeline
             return
                 (e.Type != Event.EventType.STOP) &&
                 !(e.Type == Event.EventType.PRESS && e.ScanCode == 27);
+        }
+
+
+        // Post event loop clean up
+        private void PostCycleCleanup()
+        {
+            // Disable hook 
+            hook.StopHook();
         }
 
         // Event loop action
@@ -71,20 +81,30 @@ namespace hitboard.pipeline
                         break;
                 }
             }
+
+            // Event loop over
+            PostCycleCleanup();
         }
 
         // Enter event loop for pipeline
         public void Start()
         {
             hook.StartHook();
-            (new Thread(this.EventLoop)).Start();
+            PipelineHandler = new Thread(this.EventLoop);
+            PipelineHandler.Start();
         }
 
         // Clear pipeline 
         public void Stop()
         {
-            hook.StopHook();
+            if (PipelineHandler is null)
+            {
+                return;
+            }
+
             EventQueue.Add(new Event(Event.EventType.STOP));
+            PipelineHandler.Join();
+            PipelineHandler = null;
         }
     }
 }

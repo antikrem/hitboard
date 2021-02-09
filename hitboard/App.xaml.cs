@@ -18,6 +18,9 @@ namespace hitboard
     /// </summary>
     public partial class App : Application
     {
+        // Central reference to application
+        public static App Instance = null;
+
         // Central pipeline
         // This manages taking player input
         // And converting it to a virtual controller
@@ -26,11 +29,21 @@ namespace hitboard
 
         public App()
         {
-
             pipeline = new PipelineManager();
+
+            Instance = this;
+        }
+
+        // Start pipeline
+        public void StartPipeline()
+        {
             pipeline.Start();
+        }
 
-
+        // Stop pipeline
+        public void StopPipeline()
+        {
+            pipeline.Stop();
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

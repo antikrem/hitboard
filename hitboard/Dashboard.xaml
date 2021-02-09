@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hitboard"
         mc:Ignorable="d"
-        Title="HitBoard" Height="450" Width="800">
+        Title="HitBoard" Height="638" Width="708">
     <Grid>
-        
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Input" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <GroupBox Header="D-Pad" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
+                    
+                </GroupBox>
+                
+                <GroupBox Header="Face Buttons" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+                    
+                </GroupBox>
+                
+                <GroupBox Header="Bumpers" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2">
+                    
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Options" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Header="SOCD" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
+
+                </GroupBox>
+                
+                <GroupBox Header="Face Buttons" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+
+                </GroupBox>
+
+            </Grid>
+        </GroupBox>
+
+        <Button x:Name ="StartButton" Content="Start" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Click="StartButton_Press"/>
+
+
     </Grid>
 </Window>
