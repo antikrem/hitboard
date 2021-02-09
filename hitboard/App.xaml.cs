@@ -35,7 +35,7 @@ namespace hitboard
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            pipeline.Free();
+            pipeline.Stop();
         }
     }
 }

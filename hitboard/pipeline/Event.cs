@@ -33,5 +33,11 @@ namespace hitboard.pipeline
             Type = type;
             ScanCode = scancode;
         }
+
+        // Constructors for General event
+        public Event(EventType type)
+        {
+            Type = type;
+        }
     }
 }

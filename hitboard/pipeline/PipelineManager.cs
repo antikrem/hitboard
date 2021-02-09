@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace hitboard.pipeline
@@ -35,12 +37,22 @@ namespace hitboard.pipeline
 
         }
 
+        // Checks if Event is a stop sequence
+        private static bool CheckLoopCondition(Event e)
+        {
+            return
+                (e.Type != Event.EventType.STOP) &&
+                !(e.Type == Event.EventType.PRESS && e.ScanCode == 27);
+        }
+
         // Event loop action
         // Will stop on EventType.STOP event
         private void EventLoop()
         {
             Event e;
-            while ((e = EventQueue.Take()).Type != Event.EventType.STOP)
+
+            // Keep looping until Loop Conditions are not met
+            while (CheckLoopCondition(e = EventQueue.Take()))
             {
                 // Check for a stop hardcode
                 if (e.Type == Event.EventType.PRESS && e.ScanCode == 27) break;
@@ -56,13 +68,14 @@ namespace hitboard.pipeline
         // Enter event loop for pipeline
         public void SpinUpEventLoop()
         {
-            EventLoop();
+            (new Thread(this.EventLoop)).Start();
         }
 
-        // Clear pipeline
-        public void Free()
+        // Clear pipeline 
+        public void Stop()
         {
             hook.StopHook();
+            EventQueue.Add(new Event(Event.EventType.STOP));
         }
     }
 }
