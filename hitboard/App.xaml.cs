@@ -28,7 +28,7 @@ namespace hitboard
         {
 
             pipeline = new PipelineManager();
-            pipeline.SpinUpEventLoop();
+            pipeline.Start();
 
 
         }
