@@ -33,7 +33,6 @@ namespace hitboard.pipeline
 
             // Create hook
             hook = new KeyboardHook(EventQueue);
-            hook.StartHook();
 
         }
 
@@ -54,20 +53,30 @@ namespace hitboard.pipeline
             // Keep looping until Loop Conditions are not met
             while (CheckLoopCondition(e = EventQueue.Take()))
             {
-                // Check for a stop hardcode
-                if (e.Type == Event.EventType.PRESS && e.ScanCode == 27) break;
+                switch (e.Type)
+                {
+                    // Ignore
+                    case Event.EventType.NONE:
+                        break;
 
-                // Given new event, update keystate
-                if (!configuration.Configuration.ContainsKey(e.ScanCode)) continue;
-                State.Buttons[(int)configuration.Configuration[e.ScanCode]] = (e.Type == Event.EventType.PRESS);
+                    // Given new event, update keystate
+                    case Event.EventType.PRESS:
+                    case Event.EventType.RELEASE:
+                        KeyState eState = configuration.UpdateKeyState(State, e);
+                        vController.Input(eState);
+                        break;
 
-                int value = vController.Input(State);
+                    // Handled in CheckLoopCondition
+                    case Event.EventType.STOP:
+                        break;
+                }
             }
         }
 
         // Enter event loop for pipeline
-        public void SpinUpEventLoop()
+        public void Start()
         {
+            hook.StartHook();
             (new Thread(this.EventLoop)).Start();
         }
 
