@@ -17,6 +17,10 @@ namespace hitboard.pipeline
         BACK,
         LEFT_THUMB,
         RIGHT_THUMB,
+        LEFT_SHOULDER,
+        RIGHT_SHOULDER,
+        LEFT_TRIGGER,
+        RIGHT_TRIGGER,
         X,
         Y,
         A,
@@ -28,7 +32,7 @@ namespace hitboard.pipeline
 
 
     // Represents the current configuration of keys
-    class KeyState
+    class KeyState : ICloneable
     {
 
         // Look up for Key to XINPUT bitmask
@@ -41,6 +45,8 @@ namespace hitboard.pipeline
                 { Key.BACK, 0x0020 },
                 { Key.LEFT_THUMB, 0x0040 },
                 { Key.RIGHT_THUMB, 0x0080 },
+                { Key.LEFT_SHOULDER, 0x0100 },
+                { Key.RIGHT_SHOULDER, 0x0200 },
                 { Key.X, 0x4000 },
                 { Key.Y, 0x8000 },
                 { Key.A, 0x1000 },
@@ -61,6 +67,19 @@ namespace hitboard.pipeline
             }
 
             return state;
+        }
+
+        // Clone this object
+        public object Clone()
+        {
+            KeyState state = new KeyState();
+            for (int i = 0; i < (int)Key.KEYCOUNT; i++)
+            {
+                state.Buttons[i] = this.Buttons[i];
+            }
+
+            return state;
+
         }
     }
 
