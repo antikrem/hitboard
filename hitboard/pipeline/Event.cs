@@ -39,5 +39,26 @@ namespace hitboard.pipeline
         {
             Type = type;
         }
+
+        // 
+        private Key[] SOCD_INPUTS = new Key[]
+        {
+            Key.UP,
+            Key.DOWN,
+            Key.LEFT,
+            Key.RIGHT
+        };
+
+        // Returns true if it is an SOCD effecting input
+        public bool IsSOCDEffecting(KeyConfiguration config)
+        {
+            if (!(this.Type == EventType.PRESS || this.Type == EventType.RELEASE)) return false;
+
+            // Check if it was either a left, right, up or down
+            return (
+                    SOCD_INPUTS.Contains(config.Configuration[this.ScanCode])
+                );
+
+        }
     }
 }
