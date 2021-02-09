@@ -61,10 +61,16 @@ namespace hitboard.pipeline
         public XInputState ToXinputState()
         {
             XInputState state = new XInputState();
+
+            // Set regular keys
             foreach (KeyValuePair<Key, ushort> entry in KEY_TO_MASK)
             {
                 state.Gamepad.Buttons |= (ushort)((Buttons[(int)entry.Key] ? 1 : 0) * KEY_TO_MASK[entry.Key]); 
             }
+
+            // Set triggers
+            state.Gamepad.LeftTrigger = (byte)(Buttons[(int)Key.LEFT_TRIGGER] ? 255 : 0);
+            state.Gamepad.RightTrigger = (byte)(Buttons[(int)Key.RIGHT_TRIGGER] ? 255 : 0);
 
             return state;
         }

@@ -59,12 +59,12 @@ namespace hitboard.pipeline
                 { 79, Key.Y },
                 { 75, Key.A },
                 { 76, Key.B },
-                //{ 74, Key.START },
-                //{ 70, Key.BACK }
-                //{ 74, Key.START },
-                //{ 70, Key.BACK }
-                { 74, Key.START },
-                { 70, Key.BACK }
+                { 72, Key.START },
+                { 70, Key.BACK },
+                { 85, Key.LEFT_SHOULDER },
+                { 74, Key.LEFT_TRIGGER },
+                { 80, Key.RIGHT_SHOULDER },
+                { 186, Key.RIGHT_TRIGGER }
             };
 
         // Given a keystate and event, update keystate
