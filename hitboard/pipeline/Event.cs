@@ -12,7 +12,7 @@ namespace hitboard.pipeline
      * Represents an event within the pipeline
      * Evoked from KeyboardHook and others
      */
-    class Event
+    public class Event
     {
         public enum EventType
         {

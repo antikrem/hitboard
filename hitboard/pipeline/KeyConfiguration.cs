@@ -11,7 +11,7 @@ namespace hitboard.pipeline
      * Represents an input setup
      * Which translates a scancode to Key
      */
-    class KeyConfiguration
+    public class KeyConfiguration
     {
         // Different rules to resolve SOCD's
         enum SOCDResolution
@@ -49,23 +49,7 @@ namespace hitboard.pipeline
         SOCDResolution UpDownResolution = SOCDResolution.Both;
         SOCDResolution LeftRightResolution = SOCDResolution.Neutral;
 
-        public SortedDictionary<int, Key> Configuration = new SortedDictionary<int, Key>()
-            {
-                { 87, Key.UP },
-                { 83, Key.DOWN },
-                { 65, Key.LEFT },
-                { 68, Key.RIGHT },
-                { 73, Key.X },
-                { 79, Key.Y },
-                { 75, Key.A },
-                { 76, Key.B },
-                { 72, Key.START },
-                { 70, Key.BACK },
-                { 85, Key.LEFT_SHOULDER },
-                { 74, Key.LEFT_TRIGGER },
-                { 80, Key.RIGHT_SHOULDER },
-                { 186, Key.RIGHT_TRIGGER }
-            };
+        public SortedDictionary<int, Key> Configuration = new SortedDictionary<int, Key>();
 
         // Given a keystate and event, update keystate
         // Returns a new state that is presented to controller

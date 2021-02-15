@@ -15,6 +15,8 @@ namespace hitboard.pipeline
         RIGHT,
         START,
         BACK,
+        LEFT_JOYSTICK_DOWN,
+        RIGHT_JOYSTICK_DOWN,
         LEFT_THUMB,
         RIGHT_THUMB,
         LEFT_SHOULDER,
@@ -32,7 +34,7 @@ namespace hitboard.pipeline
 
 
     // Represents the current configuration of keys
-    class KeyState : ICloneable
+    public class KeyState : ICloneable
     {
 
         // Look up for Key to XINPUT bitmask

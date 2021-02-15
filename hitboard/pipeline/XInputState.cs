@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace hitboard.pipeline
 {
     [StructLayout(LayoutKind.Sequential)]
-    struct XInputStateGamepad
+    public struct XInputStateGamepad
     {
         public ushort Buttons;
         public byte LeftTrigger;
@@ -20,7 +20,7 @@ namespace hitboard.pipeline
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    struct XInputState
+    public struct XInputState
     {
         public uint PacketNumber;
         public XInputStateGamepad Gamepad;
