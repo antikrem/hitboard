@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using hitboard.pipeline;
 using hitboard.callback;
 
 namespace hitboard
@@ -25,10 +26,32 @@ namespace hitboard
     {
         private string _KeyName = "<unassigned>";
 
+        private int _KeyCode = -1;
+
+        public int KeyCode
+        {
+            get
+            {
+                return _KeyCode;
+            }
+            set
+            {
+                _KeyCode = value;
+                DrawKeycodeLabel();
+            }
+        }
+
         // Transfers _KeyName to label
         private void DrawKeyLabel()
         {
             Key.Content = _KeyName;
+        }
+
+        // Transfers _KeyCode to label
+        private void DrawKeycodeLabel()
+        {
+            if (KeyCode < 0) return;
+            Button.Content = AsciiConverter.KeycodeToAscii(KeyCode);
         }
 
         public string KeyName
@@ -53,7 +76,8 @@ namespace hitboard
         void Key_Click(object sender, RoutedEventArgs e)
         {
             KeyboardPrompt prompt = new KeyboardPrompt();
-            Button.Content = AsciiConverter.KeycodeToAscii(prompt.Resolve());
+            int value = prompt.Resolve();
+            KeyCode = value;;
         }
     }
 }

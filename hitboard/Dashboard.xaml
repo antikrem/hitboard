@@ -20,18 +20,85 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <GroupBox Header="D-Pad" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
-                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <local:InputBox x:Name ="BtnUp" Grid.Row="0" KeyName ="Up"/>
+                        <local:InputBox x:Name ="BtnDown" Grid.Row="1" KeyName ="Down"/>
+                        <local:InputBox x:Name ="BtnLeft" Grid.Row="2" KeyName ="Left"/>
+                        <local:InputBox x:Name ="BtnRight" Grid.Row="3" KeyName ="Right"/>
+                    </Grid>
+
                 </GroupBox>
-                
+
                 <GroupBox Header="Face Buttons" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
-                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="89*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <local:InputBox x:Name ="BtnX" Grid.Row="0" KeyName ="X" Grid.ColumnSpan="2"/>
+                        <local:InputBox x:Name ="BtnY" Grid.Row="1" KeyName ="Y" Grid.ColumnSpan="2"/>
+                        <local:InputBox x:Name ="BtnA" Grid.Row="2" KeyName ="A" Grid.ColumnSpan="2"/>
+                        <local:InputBox x:Name ="BtnB" Grid.Row="3" KeyName ="B" Grid.ColumnSpan="2"/>
+                    </Grid>
                 </GroupBox>
-                
+
                 <GroupBox Header="Bumpers" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2">
-                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="89*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <local:InputBox x:Name ="BtnLeftShoulder" Grid.Row="0" KeyName ="Left Shoulder" Grid.ColumnSpan="2"/>
+                        <local:InputBox x:Name ="BtnLeftTrigger" Grid.Row="1" KeyName ="Left Trigger" Grid.ColumnSpan="2"/>
+                        <local:InputBox x:Name ="BtnRightShoulder" Grid.Row="2" KeyName ="Right Shoulder" Grid.ColumnSpan="2"/>
+                        <local:InputBox x:Name ="BtnRightTrigger" Grid.Row="3" KeyName ="Right Trigger" Grid.ColumnSpan="2"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Auxiliarily" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <local:InputBox x:Name ="BtnStart" Grid.Row="0" KeyName ="Start" Grid.ColumnSpan="3"/>
+                        <local:InputBox x:Name ="BtnBack" Grid.Row="1" KeyName ="Black" Grid.ColumnSpan="3"/>
+                        <local:InputBox x:Name ="BtnLeftJoy" Grid.Row="2" KeyName ="Left Joystick" Grid.ColumnSpan="3"/>
+                        <local:InputBox x:Name ="BtnRightJoy" Grid.Row="3" KeyName ="Right Joystick" Grid.ColumnSpan="3"/>
+                    </Grid>
                 </GroupBox>
             </Grid>
         </GroupBox>
@@ -46,7 +113,7 @@
                 <GroupBox Header="SOCD" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
 
                 </GroupBox>
-                
+
                 <GroupBox Header="Face Buttons" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
 
                 </GroupBox>

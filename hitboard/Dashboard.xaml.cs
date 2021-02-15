@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Diagnostics;
+using hitboard.pipeline;
 
 namespace hitboard
 {
@@ -24,10 +25,42 @@ namespace hitboard
     {
         bool IsPipelineActive = false;
 
+        // Key button cache
+        private Dictionary<pipeline.Key, InputBox> InputBoxCache;
+
         public Dashboard()
         {
             InitializeComponent();
 
+            InputBoxCache = new Dictionary<pipeline.Key, InputBox>
+            {
+                { pipeline.Key.UP, BtnUp },
+                { pipeline.Key.DOWN, BtnDown },
+                { pipeline.Key.LEFT, BtnLeft },
+                { pipeline.Key.RIGHT, BtnRight },
+
+                { pipeline.Key.X, BtnX },
+                { pipeline.Key.Y, BtnY },
+                { pipeline.Key.A, BtnA },
+                { pipeline.Key.B, BtnB },
+
+                { pipeline.Key.LEFT_SHOULDER, BtnLeftShoulder },
+                { pipeline.Key.LEFT_TRIGGER, BtnLeftTrigger },
+                { pipeline.Key.RIGHT_SHOULDER, BtnRightShoulder },
+                { pipeline.Key.RIGHT_TRIGGER, BtnRightTrigger },
+
+                { pipeline.Key.START, BtnStart },
+                { pipeline.Key.BACK, BtnBack },
+                { pipeline.Key.LEFT_JOYSTICK_DOWN, BtnLeftJoy },
+                { pipeline.Key.RIGHT_JOYSTICK_DOWN, BtnRightJoy }
+            };
+
+            KeyConfiguration temp = new KeyConfiguration();
+            temp.Configuration[87] = pipeline.Key.UP;
+            temp.Configuration[83] = pipeline.Key.DOWN;
+            temp.Configuration[65] = pipeline.Key.LEFT;
+            temp.Configuration[68] = pipeline.Key.RIGHT;
+            LoadConfiguration(temp);
         }
 
         private void StartButton_Press(object sender, RoutedEventArgs e)
@@ -44,13 +77,41 @@ namespace hitboard
             IsPipelineActive = !IsPipelineActive;
         }
 
+        // Load a configuration into dashboard
+        private void LoadConfiguration(KeyConfiguration configuration)
+        {
+            foreach (var i in configuration.Configuration)
+            {
+                InputBoxCache[i.Value].KeyCode = i.Key;
+            }
+        }
+
+        // Convert into a configuration
+        private KeyConfiguration GenerateConfiguration()
+        {
+            KeyConfiguration configuration = new KeyConfiguration();
+            foreach (var i in InputBoxCache)
+            {
+                int keycode = i.Value.KeyCode;
+                if (keycode > 0)
+                {
+                    configuration.Configuration[keycode] = i.Key;
+                }
+                
+            }
+
+            return configuration;
+        }
+
         // Start pipeline
         public void StartPipeline()
         {
             StartButton.Content = "Stop";
 
-            App.Instance.StartPipeline();
+            // Get configuration from setup
+            var configuration = GenerateConfiguration();
 
+            App.Instance.StartPipeline(configuration);
         }
 
         // Stop pipeline
