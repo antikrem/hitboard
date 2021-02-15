@@ -35,9 +35,9 @@ namespace hitboard
         }
 
         // Start pipeline
-        public void StartPipeline()
+        public void StartPipeline(KeyConfiguration configuration)
         {
-            pipeline.Start();
+            pipeline.Start(configuration);
         }
 
         // Stop pipeline

@@ -18,7 +18,7 @@ namespace hitboard.pipeline
         private KeyState State = new KeyState();
 
         // Currently active configuration
-        private KeyConfiguration configuration = new KeyConfiguration();
+        private KeyConfiguration Configuration;
 
         // Event Queue
         private readonly BlockingCollection<Event> EventQueue  
@@ -72,7 +72,7 @@ namespace hitboard.pipeline
                     // Given new event, update keystate
                     case Event.EventType.PRESS:
                     case Event.EventType.RELEASE:
-                        KeyState eState = configuration.UpdateKeyState(State, e);
+                        KeyState eState = Configuration.UpdateKeyState(State, e);
                         vController.Input(eState);
                         break;
 
@@ -87,8 +87,9 @@ namespace hitboard.pipeline
         }
 
         // Enter event loop for pipeline
-        public void Start()
+        public void Start(KeyConfiguration configuration)
         {
+            this.Configuration = configuration;
             hook.StartHook();
             PipelineHandler = new Thread(this.EventLoop);
             PipelineHandler.Start();
