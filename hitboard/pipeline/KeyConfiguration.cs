@@ -5,16 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
+
 namespace hitboard.pipeline
 {
     /**
      * Represents an input setup
      * Which translates a scancode to Key
      */
+     [Serializable]
     public class KeyConfiguration
     {
+        private const string CONFIG_FOLDER = "configs/";
+        private const string CONFIG_SUFFIX = ".json";
+
         // Different rules to resolve SOCD's
-        enum SOCDResolution
+        public enum SOCDResolution
         {
             Both,
             Neutral,
@@ -46,10 +54,10 @@ namespace hitboard.pipeline
         }
 
         // SOCD Resolution for given input
-        SOCDResolution UpDownResolution = SOCDResolution.Both;
-        SOCDResolution LeftRightResolution = SOCDResolution.Neutral;
+        public SOCDResolution UpDownResolution { get; set; } = SOCDResolution.Both;
+        public SOCDResolution LeftRightResolution { get; set; } = SOCDResolution.Neutral;
 
-        public SortedDictionary<int, Key> Configuration = new SortedDictionary<int, Key>();
+        public SortedDictionary<int, Key> Configuration { get; set; } = new SortedDictionary<int, Key>();
 
         // Given a keystate and event, update keystate
         // Returns a new state that is presented to controller
@@ -70,6 +78,28 @@ namespace hitboard.pipeline
                     = ResolveSOCD(eState.Buttons[(int)Key.LEFT], eState.Buttons[(int)Key.RIGHT], LeftRightResolution);
 
             return eState;
+        }
+
+        // Save this configuration as a json
+        public void Save(string name)
+        {
+            var options = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(this, options);
+
+            File.WriteAllText(CONFIG_FOLDER + name + CONFIG_SUFFIX, json);
+
+        }
+
+        // Load a configuration given a name
+        static public KeyConfiguration Load(string name)
+        {
+            string json = File.ReadAllText(CONFIG_FOLDER + name + CONFIG_SUFFIX);
+
+            return JsonSerializer.Deserialize<KeyConfiguration>(json);
         }
     }
 }
