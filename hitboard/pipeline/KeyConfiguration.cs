@@ -53,6 +53,9 @@ namespace hitboard.pipeline
 
         }
 
+        // Associated to string name
+        public string Name;
+
         // SOCD Resolution for given input
         public SOCDResolution UpDownResolution { get; set; } = SOCDResolution.Both;
         public SOCDResolution LeftRightResolution { get; set; } = SOCDResolution.Neutral;
@@ -95,11 +98,29 @@ namespace hitboard.pipeline
         }
 
         // Load a configuration given a name
-        static public KeyConfiguration Load(string name)
+        static public KeyConfiguration Load(string configFile)
         {
-            string json = File.ReadAllText(CONFIG_FOLDER + name + CONFIG_SUFFIX);
+            string json = File.ReadAllText(configFile);
 
-            return JsonSerializer.Deserialize<KeyConfiguration>(json);
+            var configuration = JsonSerializer.Deserialize<KeyConfiguration>(json);
+            configuration.Name = configFile;
+            return configuration;
+        }
+
+        // Loads all possible key configs
+        static public KeyConfiguration[] LoadConfigurations()
+        {
+            string[] filePaths = Directory.GetFiles(CONFIG_FOLDER, "*" + CONFIG_SUFFIX,
+                                         SearchOption.TopDirectoryOnly);
+
+            KeyConfiguration[] configs = filePaths.ToList()
+                                                .Select(x => KeyConfiguration.Load(x))
+                                                .ToArray();
+            return configs;
+        }
+
+        public override string ToString() {
+            return Name;
         }
     }
 }
