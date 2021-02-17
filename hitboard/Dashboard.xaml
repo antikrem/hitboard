@@ -5,16 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hitboard"
         mc:Ignorable="d"
-        Title="HitBoard" Height="638" Width="708">
+        Title="HitBoard" Height="600" Width="708">
     <Grid>
 
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Input" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0">
+
+        <GroupBox Header="Configs" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox x:Name ="ConfigComboBox" 
+                          Focusable="False" IsEditable="True" IsReadOnly="True" Text="Select Configuration" 
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                          SelectionChanged="ConfigComboBox_SelectionChanged" DropDownClosed="ConfigComboBox_DropDownClosed"
+                          Margin="3"/>
+                <Button x:Name ="LoadButton" Content="Load" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Click="LoadButton_Press" Margin="3"/>
+                <Button x:Name ="SaveButton" Content="Save As" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Click="SaveButton_Press" Margin="3"/>
+
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Input" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -103,7 +124,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Options" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="1">
+        <GroupBox Header="Options" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -121,7 +142,7 @@
             </Grid>
         </GroupBox>
 
-        <Button x:Name ="StartButton" Content="Start" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Click="StartButton_Press"/>
+        <Button x:Name ="StartButton" Content="Start" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="StartButton_Press"/>
 
 
     </Grid>

@@ -25,6 +25,8 @@ namespace hitboard
     {
         bool IsPipelineActive = false;
 
+        bool configHandleFlag = true;
+
         // Key button cache
         private Dictionary<pipeline.Key, InputBox> InputBoxCache;
 
@@ -55,12 +57,33 @@ namespace hitboard
                 { pipeline.Key.RIGHT_JOYSTICK_DOWN, BtnRightJoy }
             };
 
-            KeyConfiguration temp = new KeyConfiguration();
-            temp.Configuration[87] = pipeline.Key.UP;
-            temp.Configuration[83] = pipeline.Key.DOWN;
-            temp.Configuration[65] = pipeline.Key.LEFT;
-            temp.Configuration[68] = pipeline.Key.RIGHT;
-            LoadConfiguration(temp);
+            PopulateConfigComboBox();
+        }
+
+        private void PopulateConfigComboBox()
+        {
+            var configurations = KeyConfiguration.LoadConfigurations();
+
+            foreach (KeyConfiguration config in configurations)
+            {
+                ConfigComboBox.Items.Add(config);
+            }
+        }
+
+        private void ConfigComboBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            ComboBox cmb = sender as ComboBox;
+            configHandleFlag = !cmb.IsDropDownOpen;
+            LoadConfiguration((KeyConfiguration)ConfigComboBox.SelectedItem);
+        }
+
+        private void ConfigComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            if (configHandleFlag)
+            {
+                LoadConfiguration((KeyConfiguration)ConfigComboBox.SelectedItem);
+            }
+            configHandleFlag = true;
         }
 
         private void StartButton_Press(object sender, RoutedEventArgs e)
@@ -75,6 +98,18 @@ namespace hitboard
             }
 
             IsPipelineActive = !IsPipelineActive;
+        }
+
+        private void LoadButton_Press(object sender, RoutedEventArgs e)
+        {
+            var config = GenerateConfiguration();
+           // LoadConfiguration(KeyConfiguration.Load());
+        }
+
+        private void SaveButton_Press(object sender, RoutedEventArgs e)
+        {
+            var config = GenerateConfiguration();
+            config.Save("ChallyPro");
         }
 
         // Load a configuration into dashboard
