@@ -115,6 +115,10 @@ namespace hitboard
         // Load a configuration into dashboard
         private void LoadConfiguration(KeyConfiguration configuration)
         {
+            foreach (var i in InputBoxCache)
+            {
+                i.Value.KeyCode = -1;
+            }
             foreach (var i in configuration.Configuration)
             {
                 InputBoxCache[i.Value].KeyCode = i.Key;

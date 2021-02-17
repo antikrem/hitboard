@@ -50,8 +50,14 @@ namespace hitboard
         // Transfers _KeyCode to label
         private void DrawKeycodeLabel()
         {
-            if (KeyCode < 0) return;
-            Button.Content = AsciiConverter.KeycodeToAscii(KeyCode);
+            if (KeyCode < 0)
+            {
+                Button.Content = "";
+            } else
+            {
+                Button.Content = AsciiConverter.KeycodeToAscii(KeyCode);
+            }
+
         }
 
         public string KeyName
