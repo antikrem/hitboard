@@ -57,10 +57,10 @@ namespace hitboard
                 { pipeline.Key.RIGHT_JOYSTICK_DOWN, BtnRightJoy }
             };
 
-            PopulateConfigComboBox();
+            PopulateComboBoxes();
         }
 
-        private void PopulateConfigComboBox()
+        private void PopulateComboBoxes()
         {
             var configurations = KeyConfiguration.LoadConfigurations();
 
@@ -68,6 +68,22 @@ namespace hitboard
             {
                 ConfigComboBox.Items.Add(config);
             }
+
+            foreach (KeyConfiguration.SOCDResolution resolution in Enum.GetValues(typeof(KeyConfiguration.SOCDResolution)))
+            {
+                if (resolution != KeyConfiguration.SOCDResolution.Up && resolution != KeyConfiguration.SOCDResolution.Down)
+                {
+                    LeftRightSOCDComboBox.Items.Add(resolution);
+                }
+                if (resolution != KeyConfiguration.SOCDResolution.Left && resolution != KeyConfiguration.SOCDResolution.Right)
+                {
+                    UpDownSOCDComboBox.Items.Add(resolution);
+                }
+            }
+
+            // Set default SOCD
+            LeftRightSOCDComboBox.SelectedItem = KeyConfiguration.SOCDResolution.Both;
+            UpDownSOCDComboBox.SelectedItem = KeyConfiguration.SOCDResolution.Both;
         }
 
         private void ConfigComboBox_SelectionChanged(object sender, RoutedEventArgs e)
@@ -124,10 +140,14 @@ namespace hitboard
             {
                 i.Value.KeyCode = -1;
             }
+
             foreach (var i in configuration.Configuration)
             {
                 InputBoxCache[i.Value].KeyCode = i.Key;
             }
+
+            LeftRightSOCDComboBox.SelectedItem = configuration.LeftRightResolution;
+            UpDownSOCDComboBox.SelectedItem = configuration.UpDownResolution;
         }
 
         // Convert into a configuration
@@ -143,6 +163,9 @@ namespace hitboard
                 }
                 
             }
+
+            configuration.LeftRightResolution = (KeyConfiguration.SOCDResolution)LeftRightSOCDComboBox.SelectedItem;
+            configuration.UpDownResolution = (KeyConfiguration.SOCDResolution)UpDownSOCDComboBox.SelectedItem;
 
             return configuration;
         }

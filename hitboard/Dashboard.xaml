@@ -132,7 +132,25 @@
                 </Grid.ColumnDefinitions>
 
                 <GroupBox Header="SOCD" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.9*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Left - Right Resolution:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0"/>
+                        <Label Content="Up - Down Resolution:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
+                        
+                        <ComboBox x:Name="LeftRightSOCDComboBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"/>
+                        <ComboBox x:Name="UpDownSOCDComboBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+
+                    </Grid>
                 </GroupBox>
 
                 <GroupBox Header="Face Buttons" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
