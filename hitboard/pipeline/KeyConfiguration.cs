@@ -26,8 +26,10 @@ namespace hitboard.pipeline
         {
             Both,
             Neutral,
-            Low,
-            High
+            Down,
+            Up,
+            Left,
+            Right
         }
 
         // Solution to an SOCD given input
@@ -41,10 +43,12 @@ namespace hitboard.pipeline
                 case SOCDResolution.Neutral:
                     return lowInput && highInput ? (false, false) : (lowInput, highInput);
 
-                case SOCDResolution.Low:
+                case SOCDResolution.Down:
+                case SOCDResolution.Left:
                     return lowInput && highInput ? (true, false) : (lowInput, highInput);
 
-                case SOCDResolution.High:
+                case SOCDResolution.Up:
+                case SOCDResolution.Right:
                     return lowInput && highInput ? (false, true) : (lowInput, highInput);
 
                 default:
