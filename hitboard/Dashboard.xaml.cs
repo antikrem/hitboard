@@ -103,7 +103,7 @@ namespace hitboard
         private void LoadButton_Press(object sender, RoutedEventArgs e)
         {
             var config = GenerateConfiguration();
-           // LoadConfiguration(KeyConfiguration.Load());
+           //LoadConfiguration(KeyConfiguration.Load());
         }
 
         private void SaveButton_Press(object sender, RoutedEventArgs e)
@@ -115,6 +115,11 @@ namespace hitboard
         // Load a configuration into dashboard
         private void LoadConfiguration(KeyConfiguration configuration)
         {
+            if (configuration is null)
+            {
+                return;
+            }
+
             foreach (var i in InputBoxCache)
             {
                 i.Value.KeyCode = -1;
