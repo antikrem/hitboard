@@ -26,8 +26,8 @@ namespace hitboard.pipeline
         {
             Both,
             Neutral,
-            Down,
             Up,
+            Down,
             Left,
             Right
         }
@@ -43,11 +43,11 @@ namespace hitboard.pipeline
                 case SOCDResolution.Neutral:
                     return lowInput && highInput ? (false, false) : (lowInput, highInput);
 
-                case SOCDResolution.Down:
+                case SOCDResolution.Up:
                 case SOCDResolution.Left:
                     return lowInput && highInput ? (true, false) : (lowInput, highInput);
 
-                case SOCDResolution.Up:
+                case SOCDResolution.Down:
                 case SOCDResolution.Right:
                     return lowInput && highInput ? (false, true) : (lowInput, highInput);
 
