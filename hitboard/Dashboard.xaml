@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:hitboard"
         mc:Ignorable="d"
         Title="HitBoard" Height="600" Width="708">
-    <Grid>
+    <Grid x:Name="RootGrid">
 
 
         <Grid.RowDefinitions>

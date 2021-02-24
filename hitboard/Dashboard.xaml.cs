@@ -61,6 +61,25 @@ namespace hitboard
             PopulateComboBoxes();
         }
 
+        // Locks all controls not StartButton
+        private void Lock()
+        { 
+            foreach (var control in RootGrid.Children.OfType<GroupBox>())
+            {
+                control.IsEnabled = false;
+            }
+        }
+
+        // Unlocks all controls
+        private void Unlock()
+        {
+            foreach (var control in RootGrid.Children.OfType<GroupBox>())
+            {
+                control.IsEnabled = true;
+            }
+        }
+
+        // Set up combo boxes
         private void PopulateComboBoxes()
         {
             var configurations = KeyConfiguration.LoadConfigurations();
@@ -200,6 +219,7 @@ namespace hitboard
         public void StartPipeline()
         {
             StartButton.Content = "Stop";
+            Lock();
 
             // Get configuration from setup
             var configuration = GenerateConfiguration();
@@ -211,6 +231,7 @@ namespace hitboard
         public void StopPipeline()
         {
             StartButton.Content = "Start";
+            Unlock();
 
             App.Instance.StopPipeline();
         }
