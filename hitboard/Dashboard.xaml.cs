@@ -34,6 +34,7 @@ namespace hitboard
         {
             InitializeComponent();
 
+            // Build cache for buttons
             InputBoxCache = new Dictionary<pipeline.Key, InputBox>
             {
                 { pipeline.Key.UP, BtnUp },
@@ -128,14 +129,23 @@ namespace hitboard
 
         private void LoadButton_Press(object sender, RoutedEventArgs e)
         {
-            var config = GenerateConfiguration();
-           //LoadConfiguration(KeyConfiguration.Load());
+            LoadConfiguration((KeyConfiguration)ConfigComboBox.SelectedItem);
         }
 
         private void SaveButton_Press(object sender, RoutedEventArgs e)
         {
             var config = GenerateConfiguration();
-            config.Save("ChallyPro");
+
+            // Start dialogue
+            SaveAsDialogue dialogue = new SaveAsDialogue((KeyConfiguration)ConfigComboBox.SelectedItem);
+            dialogue.ShowDialog();
+
+            // If dialogue was successful, save
+            if (dialogue.Location.Length > 0)
+            {
+                config.Save(dialogue.Location);
+            }
+
         }
 
         // Load a configuration into dashboard

@@ -18,7 +18,7 @@ namespace hitboard.pipeline
      [Serializable]
     public class KeyConfiguration
     {
-        private const string CONFIG_FOLDER = "configs/";
+        public const string CONFIG_FOLDER = "configs/";
         private const string CONFIG_SUFFIX = ".json";
 
         // Different rules to resolve SOCD's
@@ -124,7 +124,7 @@ namespace hitboard.pipeline
 
             string json = JsonSerializer.Serialize(this, options);
 
-            File.WriteAllText(CONFIG_FOLDER + name + CONFIG_SUFFIX, json);
+            File.WriteAllText(CONFIG_FOLDER + name, json);
 
         }
 
