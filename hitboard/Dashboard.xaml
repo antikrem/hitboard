@@ -131,7 +131,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <GroupBox Header="SOCD" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
+                <GroupBox Header="SOCD" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Padding="3">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.9*"/>
@@ -146,15 +146,36 @@
 
                         <Label Content="Left - Right Resolution:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0"/>
                         <Label Content="Up - Down Resolution:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
-                        
+
                         <ComboBox x:Name="LeftRightSOCDComboBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"/>
                         <ComboBox x:Name="UpDownSOCDComboBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
 
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Header="Face Buttons" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+                <GroupBox Header="Activation" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"  Padding="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24*"/>
+                            <ColumnDefinition Width="133*"/>
+                            <ColumnDefinition Width="58*"/>
+                            <ColumnDefinition Width="117*"/>
+                        </Grid.ColumnDefinitions>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Directional:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <Label Content="Face:" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+                        <ComboBox x:Name="DirectionalComboBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"/>
+                        <ComboBox x:Name="FaceComboBox" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"/>
+
+                    </Grid>
                 </GroupBox>
 
             </Grid>

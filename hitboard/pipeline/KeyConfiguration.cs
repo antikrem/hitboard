@@ -32,6 +32,14 @@ namespace hitboard.pipeline
             Right
         }
 
+        // Different rules for updating key state
+        public enum KeyActivation
+        {
+            Default,
+            RisingEdge,
+            FallingEdge
+        }
+
         // Solution to an SOCD given input
         static private (bool, bool) ResolveSOCD(bool lowInput, bool highInput, SOCDResolution resolution)
         {
@@ -57,12 +65,30 @@ namespace hitboard.pipeline
 
         }
 
+        // Updates state given input and key configuration
+        private void UpdateFromInput(KeyState state, Event e)
+        {
+            switch (e.IsSOCDEffecting(this) ? FaceActivation : DirectionActivation)
+            {
+
+                case KeyActivation.Default:
+                default:
+                    state.Buttons[(int)Configuration[e.ScanCode]] = (e.Type == Event.EventType.PRESS);
+                    break;
+
+            }
+        }
+
         // Associated to string name
         public string Name;
 
         // SOCD Resolution for given input
         public SOCDResolution UpDownResolution { get; set; } = SOCDResolution.Both;
         public SOCDResolution LeftRightResolution { get; set; } = SOCDResolution.Neutral;
+
+        // Activation for buttons
+        public KeyActivation DirectionActivation { get; set; } = KeyActivation.Default;
+        public KeyActivation FaceActivation { get; set; } = KeyActivation.Default;
 
         public SortedDictionary<int, Key> Configuration { get; set; } = new SortedDictionary<int, Key>();
 
@@ -74,8 +100,9 @@ namespace hitboard.pipeline
             if (!Configuration.ContainsKey(e.ScanCode)) return state;
 
             // Update keyboard state
-            state.Buttons[(int)Configuration[e.ScanCode]] = (e.Type == Event.EventType.PRESS);
+            UpdateFromInput(state, e);
 
+            // Copy state for SOCD
             KeyState eState = (KeyState)state.Clone();
 
             // Resolve SOCD

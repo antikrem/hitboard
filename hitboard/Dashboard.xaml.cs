@@ -81,9 +81,19 @@ namespace hitboard
                 }
             }
 
+            foreach (KeyConfiguration.KeyActivation activation in Enum.GetValues(typeof(KeyConfiguration.KeyActivation)))
+            {
+                DirectionalComboBox.Items.Add(activation);
+                FaceComboBox.Items.Add(activation);
+            }
+
             // Set default SOCD
             LeftRightSOCDComboBox.SelectedItem = KeyConfiguration.SOCDResolution.Both;
             UpDownSOCDComboBox.SelectedItem = KeyConfiguration.SOCDResolution.Both;
+
+            // Set default Activation
+            DirectionalComboBox.SelectedItem = KeyConfiguration.KeyActivation.Default;
+            FaceComboBox.SelectedItem = KeyConfiguration.KeyActivation.Default;
         }
 
         private void ConfigComboBox_SelectionChanged(object sender, RoutedEventArgs e)
@@ -148,6 +158,9 @@ namespace hitboard
 
             LeftRightSOCDComboBox.SelectedItem = configuration.LeftRightResolution;
             UpDownSOCDComboBox.SelectedItem = configuration.UpDownResolution;
+
+            DirectionalComboBox.SelectedItem = configuration.DirectionActivation;
+            FaceComboBox.SelectedItem = configuration.FaceActivation;
         }
 
         // Convert into a configuration
@@ -166,6 +179,9 @@ namespace hitboard
 
             configuration.LeftRightResolution = (KeyConfiguration.SOCDResolution)LeftRightSOCDComboBox.SelectedItem;
             configuration.UpDownResolution = (KeyConfiguration.SOCDResolution)UpDownSOCDComboBox.SelectedItem;
+
+            configuration.DirectionActivation = (KeyConfiguration.KeyActivation)DirectionalComboBox.SelectedItem;
+            configuration.FaceActivation = (KeyConfiguration.KeyActivation)FaceComboBox.SelectedItem;
 
             return configuration;
         }
