@@ -1,5 +1,5 @@
 # hitboard
-> Configurable Hitbox/Mixboard Emulator
+> Configurable Hitbox/Mixbox Emulator
 
 Sets up a virtual controller and reroute keyboard input to emulate arcade controllers. Fully customisable though the GUI. Custom profiles can be saved for later use.
 
