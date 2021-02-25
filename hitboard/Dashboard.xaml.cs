@@ -218,7 +218,7 @@ namespace hitboard
         // Start pipeline
         public void StartPipeline()
         {
-            StartButton.Content = "Stop";
+            StartButton.Content = "Stop (or press ESC)";
             Lock();
 
             // Get configuration from setup
