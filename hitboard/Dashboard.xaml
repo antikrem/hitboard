@@ -116,7 +116,7 @@
                         </Grid.RowDefinitions>
 
                         <local:InputBox x:Name ="BtnStart" Grid.Row="0" KeyName ="Start" Grid.ColumnSpan="3"/>
-                        <local:InputBox x:Name ="BtnBack" Grid.Row="1" KeyName ="Black" Grid.ColumnSpan="3"/>
+                        <local:InputBox x:Name ="BtnBack" Grid.Row="1" KeyName ="Back" Grid.ColumnSpan="3"/>
                         <local:InputBox x:Name ="BtnLeftJoy" Grid.Row="2" KeyName ="Left Joystick" Grid.ColumnSpan="3"/>
                         <local:InputBox x:Name ="BtnRightJoy" Grid.Row="3" KeyName ="Right Joystick" Grid.ColumnSpan="3"/>
                     </Grid>
