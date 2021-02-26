@@ -23,7 +23,5 @@ Sets up a virtual controller and reroute keyboard input to emulate arcade contro
 ## Build
 0. Compilation can be done with Visual Studio 2017 or later.
 1. Clone the repo
-2. You will need to first compile the ViGEm client. This will have to be specific to your machine. You should get a (Alternativly, you could maybe find the dll online)
-3. Compile ViGEmWrapper.
-4. Compile hitboard.
-5. Run create_releast.bat to build a release export.
+2. You will need to first compile the ViGEm client, which is included as a submodule. This will have to be specific to your machine. Alternativly, you could maybe find the dll online.
+3. Build the project in release mode. This will compile all parts and create an installer.
