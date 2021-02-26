@@ -141,9 +141,14 @@ namespace hitboard.pipeline
         // Loads all possible key configs
         static public KeyConfiguration[] LoadConfigurations()
         {
+            // Create a folder if it doesn't exist
+            Directory.CreateDirectory(CONFIG_FOLDER);
+
+            // Load all files contained
             string[] filePaths = Directory.GetFiles(CONFIG_FOLDER, "*" + CONFIG_SUFFIX,
                                          SearchOption.TopDirectoryOnly);
 
+            // Load individual configs
             KeyConfiguration[] configs = filePaths.ToList()
                                                 .Select(x => KeyConfiguration.Load(x))
                                                 .ToArray();
