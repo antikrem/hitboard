@@ -90,7 +90,7 @@ namespace hitboard.pipeline
         public void Start(KeyConfiguration configuration)
         {
             this.Configuration = configuration;
-            hook.StartHook();
+            hook.StartHook(configuration);
             PipelineHandler = new Thread(this.EventLoop);
             PipelineHandler.Start();
         }

@@ -26,6 +26,8 @@ namespace hitboard.pipeline
         // Static reference to pipeline in use
         static private BlockingCollection<Event> EventQueue;
 
+        // Cache for inputs being listened to
+        static private SortedSet<int> ValidInputs;
 
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
@@ -54,9 +56,15 @@ namespace hitboard.pipeline
             EventQueue = eventQueue;
         }
 
-        public void StartHook()
+        public void StartHook(KeyConfiguration configuration)
         {
             hookID = SetHook(CallbackRef);
+            
+            // Cache inputs
+            ValidInputs = new SortedSet<int>(configuration.Configuration.Keys);
+
+            // Also add Esc
+            ValidInputs.Add(27);
         }
 
         public void StopHook()
@@ -79,18 +87,28 @@ namespace hitboard.pipeline
          */
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
+            // Check for correct input 
+            if (nCode >= 0 
+                    && (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_KEYUP)
+                    && ValidInputs.Contains(Marshal.ReadInt32(lParam))
+                )
             {
-                EventQueue.Add(new Event(Event.EventType.PRESS, Marshal.ReadInt32(lParam)));
+                EventQueue.Add(
+                        new Event(
+                                (wParam == (IntPtr)WM_KEYDOWN) ? Event.EventType.PRESS : Event.EventType.RELEASE, 
+                                Marshal.ReadInt32(lParam)
+                            )
+                    );
+
+                // Suppress keyboard event
+                return (IntPtr)(-1);
             }
-            else if (nCode >= 0 && wParam == (IntPtr)WM_KEYUP)
+            else
             {
-                EventQueue.Add(new Event(Event.EventType.RELEASE, Marshal.ReadInt32(lParam)));
+                // Don't supress input
+                return CallNextHookEx(hookID, nCode, wParam, lParam);
             }
-
-
-            // Suppress keyboard event
-            return (IntPtr)(-1);
+           
         }
     }
 }
