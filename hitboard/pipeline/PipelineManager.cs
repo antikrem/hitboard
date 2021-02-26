@@ -52,6 +52,15 @@ namespace hitboard.pipeline
         {
             // Disable hook 
             hook.StopHook();
+
+            // If this is a stop condition, tell front end
+            // to reset            
+            App.Instance.Dispatcher.Invoke(
+                () =>
+                {
+                    App.Instance.Dashboard.ResetFrontEnd();
+                }
+            );
         }
 
         // Event loop action
@@ -104,7 +113,6 @@ namespace hitboard.pipeline
             }
 
             EventQueue.Add(new Event(Event.EventType.STOP));
-            PipelineHandler.Join();
             PipelineHandler = null;
         }
     }

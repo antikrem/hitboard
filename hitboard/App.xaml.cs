@@ -21,6 +21,9 @@ namespace hitboard
         // Central reference to application
         public static App Instance = null;
 
+        // Front end manager
+        public Dashboard Dashboard;
+
         // Central pipeline
         // This manages taking player input
         // And converting it to a virtual controller

@@ -59,6 +59,9 @@ namespace hitboard
             };
 
             PopulateComboBoxes();
+
+            // Cache dashboard
+            App.Instance.Dashboard = this;
         }
 
         // Locks all controls not StartButton
@@ -142,8 +145,6 @@ namespace hitboard
             {
                 StartPipeline();
             }
-
-            IsPipelineActive = !IsPipelineActive;
         }
 
         private void LoadButton_Press(object sender, RoutedEventArgs e)
@@ -219,6 +220,7 @@ namespace hitboard
         public void StartPipeline()
         {
             StartButton.Content = "Stop (or press ESC)";
+            IsPipelineActive = !IsPipelineActive;
             Lock();
 
             // Get configuration from setup
@@ -230,10 +232,16 @@ namespace hitboard
         // Stop pipeline
         public void StopPipeline()
         {
-            StartButton.Content = "Start";
-            Unlock();
-
             App.Instance.StopPipeline();
+        }
+
+        // Change front end to be in start set
+        // This may be called from the pipeline manager
+        public void ResetFrontEnd()
+        {
+            StartButton.Content = "Start";
+            IsPipelineActive = !IsPipelineActive;
+            Unlock();
         }
     }
 }
