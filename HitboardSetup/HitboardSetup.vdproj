@@ -21,14 +21,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_53A70EED392549B3B0EA9AD82BE22E73"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_59AF0B25982514A8C7CEA6BF3E1B81ED"
+        "OwnerKey" = "8:_439D34BDE5984BE6BF3888596E435E05"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_59AF0B25982514A8C7CEA6BF3E1B81ED"
-        "OwnerKey" = "8:_439D34BDE5984BE6BF3888596E435E05"
+        "MsmKey" = "8:_5A072486B1C24A07BC37F0396D3F6204"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,12 +64,6 @@
         "Entry"
         {
         "MsmKey" = "8:_7C7B11FDF9424B22A7916D9F68D00D27"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_823C32D833F04D9A8F1E65B5A4D7071C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -123,7 +117,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B3E80805D00D4C6B8F4C2D42A867A7F9"
+        "MsmKey" = "8:_AAAE0C0515DB41109A0D7D223B00CD9A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -191,6 +185,12 @@
         {
         "MsmKey" = "8:_F55EA4E92DD917D4F6BE405209F246B3"
         "OwnerKey" = "8:_439D34BDE5984BE6BF3888596E435E05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F9D219799AA54A90B092495560CE2BB6"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -322,26 +322,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_53A70EED392549B3B0EA9AD82BE22E73"
-            {
-            "SourcePath" = "8:..\\hitboard\\bin\\Debug\\configs\\Mixbox.json"
-            "TargetName" = "8:Mixbox.json"
-            "Tag" = "8:"
-            "Folder" = "8:_53D36A9C6C3846FAB814B29EFB742DD1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_59AF0B25982514A8C7CEA6BF3E1B81ED"
             {
             "AssemblyRegister" = "3:1"
@@ -371,6 +351,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A072486B1C24A07BC37F0396D3F6204"
+            {
+            "SourcePath" = "8:..\\hitboard\\bin\\Release\\configs\\Hitbox.json"
+            "TargetName" = "8:Hitbox.json"
+            "Tag" = "8:"
+            "Folder" = "8:_5C126762E25644CA985090B19437B316"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_74C00E02868BADE46D905D348CA7D84C"
@@ -433,26 +433,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_823C32D833F04D9A8F1E65B5A4D7071C"
-            {
-            "SourcePath" = "8:..\\hitboard\\bin\\Debug\\configs\\ChallyPro.json"
-            "TargetName" = "8:ChallyPro.json"
-            "Tag" = "8:"
-            "Folder" = "8:_53D36A9C6C3846FAB814B29EFB742DD1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_888EE15F360973C11883D15B72FB6B34"
@@ -548,12 +528,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3E80805D00D4C6B8F4C2D42A867A7F9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AAAE0C0515DB41109A0D7D223B00CD9A"
             {
-            "SourcePath" = "8:..\\hitboard\\bin\\Debug\\configs\\Hitbox.json"
-            "TargetName" = "8:Hitbox.json"
+            "SourcePath" = "8:..\\hitboard\\bin\\Release\\configs\\Mixbox.json"
+            "TargetName" = "8:Mixbox.json"
             "Tag" = "8:"
-            "Folder" = "8:_53D36A9C6C3846FAB814B29EFB742DD1"
+            "Folder" = "8:_5C126762E25644CA985090B19437B316"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -712,6 +692,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9D219799AA54A90B092495560CE2BB6"
+            {
+            "SourcePath" = "8:..\\hitboard\\bin\\Release\\configs\\ChallyPro.json"
+            "TargetName" = "8:ChallyPro.json"
+            "Tag" = "8:"
+            "Folder" = "8:_5C126762E25644CA985090B19437B316"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -750,15 +750,38 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_53D36A9C6C3846FAB814B29EFB742DD1"
+                }
+            }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_DF96B9709B1149D9A6ED88A6E369247B"
+            {
+            "DefaultLocation" = "8:[CommonAppDataFolder]"
+            "Name" = "8:AppData"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:NEWPROPERTY1"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8B332338BDCA46FA97F46F338D628487"
                     {
-                    "Name" = "8:configs"
+                    "Name" = "8:hitboard"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_6378BF2A29864FA5A63A0F80F5AE1A2F"
+                    "Property" = "8:_F3374DDC2546466FA9202FAE0F49E6F6"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_5C126762E25644CA985090B19437B316"
+                            {
+                            "Name" = "8:configs"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_A002C89CCB2043DFA6B713E720E3E876"
+                                "Folders"
+                                {
+                                }
+                            }
                         }
                     }
                 }
@@ -780,7 +803,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Hitboard"
         "ProductCode" = "8:{03CBA3FE-2182-40FF-B86F-F77C3FE1DCEC}"
-        "PackageCode" = "8:{F7ACC90D-BEE8-4590-B496-3E0D7CEFD648}"
+        "PackageCode" = "8:{8D280A05-2B4B-454A-B871-FB00369F8547}"
         "UpgradeCode" = "8:{432E9A7F-1B54-418C-AF7C-01115A0C5CE9}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

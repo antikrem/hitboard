@@ -14,11 +14,20 @@ namespace hitboard.pipeline
     /**
      * Represents an input setup
      * Which translates a scancode to Key
+     * 
+     * In terms of saving, save files are in config
+     * and saved in c:/ProgramData/hitboard/config
      */
      [Serializable]
     public class KeyConfiguration
     {
-        public const string CONFIG_FOLDER = "configs/";
+        public static string CONFIG_FOLDER
+        {
+            get
+            {
+                return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "/hitboard/configs/";
+            }
+        }
         private const string CONFIG_SUFFIX = ".json";
 
         // Different rules to resolve SOCD's
