@@ -163,7 +163,19 @@ namespace hitboard
             // If dialogue was successful, save
             if (dialogue.Location.Length > 0)
             {
-                config.Save(dialogue.Location);
+                try
+                {
+                    config.Save(dialogue.Location);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(
+                            "Error saving file, possibly due to lack of permissions or storage. Save operation aborted.", 
+                            "Error",
+                            MessageBoxButton.OK, 
+                            MessageBoxImage.Error
+                        );
+                }
             }
 
         }
